@@ -23,8 +23,8 @@ public class Tree<T extends Comparable<T>> {
         return !isEmpty() && head.findNode(item);
     }
 
-    public List<Node> getElements(){
-        List<Node> elements = new ArrayList<>();
+    public List<T> getElements(){
+        List<T> elements = new ArrayList<>();
         head.getNodes(elements);
         return elements;
     }
@@ -72,9 +72,9 @@ public class Tree<T extends Comparable<T>> {
             }
         }
 
-        void getNodes(List<Node> nodes) {
+        void getNodes(List<T> nodes) {
             if (this.left != null) this.left.getNodes(nodes);
-            nodes.add(this);
+            nodes.add(this.value);
             if (this.right != null) this.right.getNodes(nodes);
         }
     }

@@ -6,6 +6,9 @@ public class User implements Comparable<User>{
     public User(int height) {
         this.height = height;
     }
+    public int getHeight() {
+        return height;
+    }
 
     @Override
     public CompareResult compare(User other) {
