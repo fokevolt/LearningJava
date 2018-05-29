@@ -39,18 +39,18 @@ public class TreeTest {
 
     @Test
     public void add_and_contains() {
-        assertFalse("do not contain 4", tree.contains(vitalik));
+        assertFalse("do not contain vitalik", tree.contains(vitalik));
         tree.add(vitalik);
-        assertTrue("contains 4", tree.contains(vitalik));
+        assertTrue("contain vitalik", tree.contains(vitalik));
 
-        assertFalse("do not contain 2", tree.contains(rostik));
-        assertFalse("do not contain 6", tree.contains(rusik));
+        assertFalse("do not contain rostik", tree.contains(rostik));
+        assertFalse("do not contain rusik", tree.contains(rusik));
 
         tree.add(rostik);
         tree.add(rusik);
 
-        assertTrue("contains 2", tree.contains(rostik));
-        assertTrue("contains 6", tree.contains(rusik));
+        assertTrue("contain rostik", tree.contains(rostik));
+        assertTrue("contain rusik", tree.contains(rusik));
     }
 
     @Test
@@ -60,10 +60,10 @@ public class TreeTest {
             tree.add(arr[i]);
         }
 
-
+        User[] arrSorted = new User[]{andrii, rostik, misha, rusik, vitalik};
         List<User> nodes = tree.getElements();
-        for (int i = 0; i < arr.length; i++) {
-            assertTrue(nodes.contains(arr[i]));
+        for (int i = 0; i < arrSorted.length; i++) {
+            assertEquals(nodes.get(i), arrSorted[i]);
         }
     }
 }
