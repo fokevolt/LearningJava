@@ -26,25 +26,23 @@ public class CounterTest {
 
     @Test
     public void frequency(){
-        Map<String, Integer> expected = new HashMap<>();
-
 
         Assert.assertTrue(counter.getFrequency().isEmpty());
         counter.count("   ");
         counter.count(null);
         Assert.assertTrue(counter.getFrequency().isEmpty());
-
         counter.count("Hello Rostik");
         counter.count("Hello Rostik bro");
         counter.count("Rostik and Vitalik");
+        Assert.assertFalse(counter.getFrequency().isEmpty());
 
+        Map<String, Integer> expected = new HashMap<>();
         expected.put("Hello", 2);
         expected.put("Rostik", 3);
         expected.put("bro", 1);
         expected.put("and", 1);
         expected.put("Vitalik", 1);
 
-        Assert.assertFalse(counter.getFrequency().isEmpty());
         Assert.assertEquals(expected, counter.getFrequency());
     }
 
