@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class CounterTest {
@@ -25,22 +26,26 @@ public class CounterTest {
 
     @Test
     public void frequency(){
+        Map<String, Integer> expected = new HashMap<>();
+
+
         Assert.assertTrue(counter.getFrequency().isEmpty());
-        Assert.assertFalse(counter.count("   "));
-        Assert.assertTrue(counter.getFrequency().isEmpty());
-        Assert.assertFalse(counter.count(null));
+        counter.count("   ");
+        counter.count(null);
         Assert.assertTrue(counter.getFrequency().isEmpty());
 
-        Assert.assertTrue(counter.count("Hello Rostik"));
+        counter.count("Hello Rostik");
+        counter.count("Hello Rostik bro");
+        counter.count("Rostik and Vitalik");
+
+        expected.put("Hello", 2);
+        expected.put("Rostik", 3);
+        expected.put("bro", 1);
+        expected.put("and", 1);
+        expected.put("Vitalik", 1);
+
         Assert.assertFalse(counter.getFrequency().isEmpty());
-
-        Assert.assertTrue(counter.getFrequency().containsKey("Hello"));
-        Assert.assertEquals(counter.getFrequency().get("Hello"), (Integer) 1);
-        Assert.assertTrue(counter.getFrequency().containsKey("Rostik"));
-        Assert.assertEquals(counter.getFrequency().get("Rostik"), (Integer) 1);
-
-        Assert.assertFalse(counter.getFrequency().containsKey("hello"));
-        Assert.assertEquals(counter.getFrequency().get("hello"), null);
+        Assert.assertEquals(expected, counter.getFrequency());
     }
 
     @Test

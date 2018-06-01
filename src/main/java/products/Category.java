@@ -1,25 +1,26 @@
 package products;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Category {
-    private Categories category;
-    private List<Product> products = new ArrayList<>();
+    private final CategoryType category;
+    private final List<Product> products = new ArrayList<>();
 
-    public Categories getCategory() {
+    public CategoryType getCategoryType() {
         return category;
     }
 
     public List<Product> getProducts() {
-        return products;
+        return Collections.unmodifiableList(products);
     }
 
-    Category (Categories category) {
+    Category(CategoryType category) {
         this.category = category;
     }
 
-    void addProductToCategory (Product product) {
+    void addProductToCategory(Product product) {
         products.add(product);
     }
 }

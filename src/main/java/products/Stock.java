@@ -1,44 +1,45 @@
 package products;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Stock {
 
-    private Map<Categories, Category> categories = new HashMap<>();
-    private List<Product> products = new ArrayList<>();
+    private final Map<CategoryType, Category> categories = new HashMap<>();
+    private final List<Product> products = new ArrayList<>();
 
-    private List<Category> makeCategoryList(Categories[] category) {
+    private List<Category> makeCategoryList(CategoryType... categoryTypes) {
         List<Category> categoriesOfProduct = new ArrayList<>();
-        for(Categories current: category) {
-            categoriesOfProduct.add(categories.get(current));
+        for (CategoryType current : categoryTypes) {
+            Category category = categories.get(current);
+            if (category == null) {
+                category = new Category(current);
+                categories.put(current, category);
+            }
+            categoriesOfProduct.add(category);
         }
         return categoriesOfProduct;
     }
 
-    public void addProduct (Categories[] category, String name, int count, int price){
+    public void addProduct(String name, int count, int price, CategoryType... category) {
 
-        for(Categories current: category) {
-            if(!categories.containsKey(current)) {
-                categories.put(current, new Category(current));
-            }
-        }
-        List<Category> productCategories= makeCategoryList(category);
+        List<Category> productCategories = makeCategoryList(category);
         Product product = new Product(productCategories, name, count, price);
         products.add(product);
 
-        for(Category current: productCategories) {
+        for (Category current : productCategories) {
             current.addProductToCategory(product);
         }
     }
 
     public List<Product> findAllProducts() {
-        return products;
+        return Collections.unmodifiableList(products);
     }
 
-    public List<Product> findProductsByCategory(Categories category) {
+    public List<Product> findProductsByCategory(CategoryType category) {
+        Category current = categories.get(category);
+        if (current == null) {
+            return Collections.emptyList();
+        }
         return categories.get(category).getProducts();
     }
 }

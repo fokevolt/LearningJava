@@ -1,37 +1,33 @@
 package words;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Counter {
     private Map<String, Integer> words = new HashMap<>();
 
-    private String[] convertToArray(String string){
-        string = string.trim();
-        String[] wordArray = string.split(" ");
-        return  wordArray;
+    private String[] convertToArray(String input) {
+        return input.trim().split(" ");
     }
 
-    public boolean count(String string){
-        if(string == null || convertToArray(string)[0].equals("")){
+    public boolean count(String string) {
+        if (string == null || convertToArray(string)[0].equals("")) {
             return false;
         } else {
             for (String word : convertToArray(string)) {
-                if (words.containsKey(word)) {
-                    words.put(word, words.get(word) + 1);
-                } else {
-                    words.put(word, 1);
-                }
+                int count = words.getOrDefault(word, 0);
+                words.put(word, count + 1);
             }
             return true;
         }
     }
 
-    public int getCount(String word){
+    public int getCount(String word) {
         return words.getOrDefault(word, 0);
     }
 
-    public Map<String, Integer> getFrequency(){
-        return words;
+    public Map<String, Integer> getFrequency() {
+        return Collections.unmodifiableMap(words);
     }
 }

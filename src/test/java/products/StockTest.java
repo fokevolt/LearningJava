@@ -16,23 +16,23 @@ public class StockTest {
 
     @Test
     public void add_products() {
-        stock.addProduct(new Categories[]{Categories.Chocolate}, "Snickers", 10, 15);
+        stock.addProduct("Snickers", 10, 15, CategoryType.Chocolate);
         Assert.assertEquals(stock.findAllProducts().get(0).getName(), "Snickers");
 
-        stock.addProduct(new Categories[]{Categories.Healthy, Categories.Children, Categories.Natural}, "Milk", 1, 20);
+        stock.addProduct("Milk", 1, 20, CategoryType.Healthy, CategoryType.Children, CategoryType.Natural);
         Assert.assertEquals(stock.findAllProducts().get(1).getCount(), 1);
 
-        stock.addProduct(new Categories[]{Categories.Healthy, Categories.Meat}, "Hum", 10, 80);
+        stock.addProduct("Hum", 10, 80, CategoryType.Healthy, CategoryType.Meat);
         Assert.assertEquals(stock.findAllProducts().get(2).getPrise(), 80);
         Assert.assertEquals(stock.findAllProducts().get(2).getName(), "Hum");
     }
 
     @Test
     public void get_products_in_category() {
-        stock.addProduct(new Categories[]{Categories.Healthy, Categories.Children, Categories.Natural}, "Milk", 1, 20);
-        stock.addProduct(new Categories[]{Categories.Healthy, Categories.Meat}, "Hum", 10, 80);
+        stock.addProduct("Milk", 1, 20, CategoryType.Healthy, CategoryType.Children, CategoryType.Natural);
+        stock.addProduct("Hum", 10, 80, CategoryType.Healthy, CategoryType.Meat);
 
-        List<Product> products = stock.findProductsByCategory(Categories.Healthy);
+        List<Product> products = stock.findProductsByCategory(CategoryType.Healthy);
 
         Assert.assertEquals(products.get(0).getName(), "Milk");
         Assert.assertEquals(products.get(1).getName(), "Hum");
@@ -40,14 +40,14 @@ public class StockTest {
 
     @Test
     public void get_categories_of_product() {
-        stock.addProduct(new Categories[]{Categories.Healthy, Categories.Children, Categories.Natural}, "Milk", 1, 20);
+        stock.addProduct("Milk", 1, 20, CategoryType.Healthy, CategoryType.Children, CategoryType.Natural);
 
         List<Category> categories = stock.findAllProducts().get(0).getCategories();
 
         Assert.assertEquals(categories.size(), 3);
-        Assert.assertEquals(categories.get(0).getCategory(), Categories.Healthy);
-        Assert.assertEquals(categories.get(1).getCategory(), Categories.Children);
-        Assert.assertEquals(categories.get(2).getCategory(), Categories.Natural);
+        Assert.assertEquals(categories.get(0).getCategoryType(), CategoryType.Healthy);
+        Assert.assertEquals(categories.get(1).getCategoryType(), CategoryType.Children);
+        Assert.assertEquals(categories.get(2).getCategoryType(), CategoryType.Natural);
     }
 }
 
