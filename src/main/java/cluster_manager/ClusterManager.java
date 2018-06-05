@@ -7,10 +7,13 @@ import java.util.List;
 public class ClusterManager {
     private List<Location> locations;
 
-    ClusterManager(File locationxml) {
-        locations = LocationParser.parse(locationxml);
+    ClusterManager(File locationsxml) {
+        try {
+            locations = LocationParser.parse(locationsxml);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
-
 
     public List<Cluster> getInBounds(double minLat, double minLng, double maxLat, double maxLng) {
         return new ArrayList<>();

@@ -17,4 +17,8 @@ public class Location extends LatLng {
     String getName() {
         return name;
     }
+
+    public String toString() {
+        return String.format("Location ID: %d - %s (lat: %f, lng: %f)", id, name, getLatitude(), getLongitude());
+    }
 }

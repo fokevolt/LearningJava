@@ -1,0 +1,14 @@
+<root>
+	<row>
+		<UniqueID>12</UniqueID>
+		<Name>CHURCH VIEW BP</Name>
+		<Latitude>51.14</Latitude>
+		<Longitude>0.2617</Longitude>
+	</row>
+	<row>
+		<UniqueID>14</UniqueID>
+		<Name>CLARENDON BP</Name>
+		<Latitude>51.6581</Latitude>
+		<Longitude>0.2511</Longitude>
+	</row>
+</root>
