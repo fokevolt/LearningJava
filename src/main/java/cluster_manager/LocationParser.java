@@ -23,34 +23,30 @@ class LocationParser {
         NodeList locationList = document.getElementsByTagName("row");
 
         for (int i = 0; i < locationList.getLength(); i++) {
-            Node l = locationList.item(i);
-            if (l.getNodeType() == Node.ELEMENT_NODE) {
-                Element location = (Element) l;
+            Node location = locationList.item(i);
+            if (location.getNodeType() == Node.ELEMENT_NODE) {
                 NodeList parameters = location.getChildNodes();
-
                 int id = 0;
                 String name = null;
                 double latitude = 0;
                 double longitude = 0;
 
                 for (int j = 0; j < parameters.getLength(); j++) {
-                    Node p = parameters.item(j);
-                    if (p.getNodeType() == Node.ELEMENT_NODE) {
-                        Element parameter = (Element) p;
-
-                        if (parameter.getTagName().equals("UniqueID")) {
+                    Node parameter = parameters.item(j);
+                    if (parameter.getNodeType() == Node.ELEMENT_NODE) {
+                        if (parameter.getNodeName().equals("UniqueID")) {
                             id = Integer.parseInt(parameter.getTextContent());
                             continue;
                         }
-                        if (parameter.getTagName().equals("Name")) {
+                        if (parameter.getNodeName().equals("Name")) {
                             name = parameter.getTextContent();
                             continue;
                         }
-                        if (parameter.getTagName().equals("Latitude")) {
+                        if (parameter.getNodeName().equals("Latitude")) {
                             latitude = Double.parseDouble(parameter.getTextContent());
                             continue;
                         }
-                        if (parameter.getTagName().equals("Longitude")) {
+                        if (parameter.getNodeName().equals("Longitude")) {
                             longitude = Double.parseDouble(parameter.getTextContent());
                         }
                     }
