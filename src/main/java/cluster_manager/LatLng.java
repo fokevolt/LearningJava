@@ -1,6 +1,6 @@
 package cluster_manager;
 
-public class LatLng {
+class LatLng {
     private final double latitude;
     private final double longitude;
 

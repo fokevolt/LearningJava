@@ -16,6 +16,8 @@ public class ClusterManager {
     }
 
     public List<Cluster> getInBounds(double minLat, double minLng, double maxLat, double maxLng) {
-        return new ArrayList<>();
+        List<Cluster> clusters = new ArrayList<>();
+        //...TO DO
+        return clusters;
     }
 }

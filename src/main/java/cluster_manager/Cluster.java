@@ -5,28 +5,28 @@ import java.util.Collections;
 import java.util.List;
 
 public class Cluster {
-    LatLng center;
-    List<Location> items;
+    private LatLng center;
+    private List<Location> items;
 
     Cluster(List<Location> locations) {
         items = new ArrayList<>(locations);
-        center = findCenter();
+        findCenter();
     }
 
     public LatLng getCenter() {
         return center;
     }
 
-    private LatLng findCenter() {
-        return center;
+    private void findCenter() {
+        //...TO DO
     }
 
-    public List<Location> getItems() {
+    public List<Location> getLocations() {
         return Collections.unmodifiableList(items);
     }
 
     public void addItem(Location item) {
         items.add(item);
-        center = findCenter();
+        findCenter();
     }
 }
