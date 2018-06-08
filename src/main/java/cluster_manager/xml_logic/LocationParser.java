@@ -1,7 +1,7 @@
-package cluster_manager;
+package cluster_manager.xml_logic;
 
+import cluster_manager.Location;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -11,14 +11,14 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-class LocationParser {
+public class LocationParser {
 
-    static List<Location> parse(File locations) throws Exception {
+    public static List<Location> parse(File locationsXML) throws Exception {
         List<Location> items = new ArrayList<>();
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(locations);
+        Document document = builder.parse(locationsXML);
 
         NodeList locationList = document.getElementsByTagName("row");
 
