@@ -24,11 +24,11 @@ class Randomizer {
 
     static String getRandomLatitude() {
         double random = ThreadLocalRandom.current().nextDouble(-90, 90);
-        return String.format("%s", random);
+        return String.format("%.4f", random);
     }
 
     static String getRandomLongitude() {
         double random = ThreadLocalRandom.current().nextDouble(-180, 180);
-        return String.format("%s", random);
+        return String.format("%.4f", random);
     }
 }
