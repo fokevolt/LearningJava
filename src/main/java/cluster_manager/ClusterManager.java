@@ -13,24 +13,19 @@ public class ClusterManager {
     private File locationsxml;
 
     ClusterManager(File xml) {
-        locationsxml = xml;
-        try {
+        if (xml != null) {
+            locationsxml = xml;
             locations = LocationParser.parse(locationsxml);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } else {
+            System.out.println("File doesn't exist!");
         }
     }
 
     ClusterManager(int count) {
-        try {
-            locationsxml = LocationGenerator.generate(1000);
-            locations = LocationParser.parse(locationsxml);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        this(LocationGenerator.generate(count));
     }
 
-    public List<Location> getLocations() {
+    List<Location> getLocations() {
         return Collections.unmodifiableList(locations);
     }
 

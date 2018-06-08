@@ -12,7 +12,7 @@ public class ClusterManagerTest {
 
     @Test
     public void parsing_locations_from_xml() {
-        File location = new File("C:\\Users\\vitalii_bondariev\\IdeaProjects\\LearningJava\\locations.xml");
+        File location = new File("locations.xml");
         manager = new ClusterManager(location);
         List<Location> current = manager.getLocations();
 
