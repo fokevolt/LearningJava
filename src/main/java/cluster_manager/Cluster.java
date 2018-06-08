@@ -18,7 +18,14 @@ public class Cluster {
     }
 
     private void findCenter() {
-        //...TO DO
+        double latitude = 0;
+        double longitude = 0;
+
+        for (Location item : items) {
+            latitude += item.getLatitude();
+            longitude += item.getLongitude();
+        }
+        center = new LatLng(latitude / items.size(), longitude / items.size());
     }
 
     public List<Location> getLocations() {
@@ -28,5 +35,11 @@ public class Cluster {
     public void addItem(Location item) {
         items.add(item);
         findCenter();
+    }
+
+    static List<Cluster> manageLocations(List<Location> locations, int gridSize) {
+        List<Cluster> clusters = new ArrayList<>();
+        //... TO DO
+        return clusters;
     }
 }
